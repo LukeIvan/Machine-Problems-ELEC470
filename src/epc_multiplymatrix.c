@@ -20,14 +20,18 @@ int main()
 {
     init();
     omp_set_num_threads(THREAD_NUM);
-    for (int i = 0; i < M_SIZE; i++) {
-        int sum = 0;
-        
-        #pragma omp parallel for reduction(+:sum)
-        for (int j = 0; j < N_SIZE; j++) {
-            sum += A[i][j] * B[j];
+    #pragma omp parallel
+    {
+        int id = omp_get_thread_num();
+        for(int i = id; i < M_SIZE; i=i+THREAD_NUM)
+        {
+            int partial_sum = 0;
+            for(int j = 0; j < N_SIZE; j++)
+            {
+                partial_sum += A[i][j] * B[j];
+            }
+            P[i] = partial_sum;
         }
-        P[i] = sum;
     }
 
     printf("Resultant vector P:\n");

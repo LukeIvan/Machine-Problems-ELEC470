@@ -20,7 +20,10 @@ MATRIX_SEQ_BIN = $(BIN_DIR)/multiplymatrix_sequential
 MATRIX_OMP_SRC = $(SRC_DIR)/multiplymatrix_openmp.c
 MATRIX_OMP_BIN = $(BIN_DIR)/multiplymatrix_openmp
 
-all: $(PTHREAD_BIN) $(SEQUENTIAL_BIN) $(OPENMP_BIN) $(MATRIX_SEQ_BIN) $(MATRIX_OMP_BIN)
+MATRIX_EPC_SRC = $(SRC_DIR)/epc_multiplymatrix.c
+MATRIX_EPC_BIN = $(BIN_DIR)/epc_multiplymatrix
+
+all: $(PTHREAD_BIN) $(SEQUENTIAL_BIN) $(OPENMP_BIN) $(MATRIX_SEQ_BIN) $(MATRIX_OMP_BIN) $(MATRIX_EPC_BIN)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
@@ -40,7 +43,10 @@ $(MATRIX_SEQ_BIN): $(MATRIX_SEQ_SRC) $(BIN_DIR)
 $(MATRIX_OMP_BIN): $(MATRIX_OMP_SRC) $(BIN_DIR)
 	$(CC) $(CFLAGS) -fopenmp $(INCLUDES) $< -o $@
 
+$(MATRIX_EPC_BIN): $(MATRIX_EPC_SRC) $(BIN_DIR)
+	$(CC) $(CFLAGS) -fopenmp $(INCLUDES) $< -o $@
+
 clean:
-	rm -f $(PTHREAD_BIN) $(SEQUENTIAL_BIN) $(OPENMP_BIN) $(MATRIX_SEQ_BIN) $(MATRIX_OMP_BIN)
+	rm -f $(PTHREAD_BIN) $(SEQUENTIAL_BIN) $(OPENMP_BIN) $(MATRIX_SEQ_BIN) $(MATRIX_OMP_BIN) $(MATRIX_EPC_BIN)
 
 .PHONY: all clean
