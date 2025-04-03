@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../include/dotproduct_pthread.h"
+#include "../include/dotproduct.h"
 
 int dotproduct = 0;
 int A[VECTOR_SIZE];
