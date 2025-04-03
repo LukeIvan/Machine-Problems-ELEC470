@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <pthread.h>
-#include "../include/pt1_pthread.h"
+#include "../include/dotproduct_pthread.h"
 
 pthread_mutex_t mutex1;
 int dotproduct = 0;
