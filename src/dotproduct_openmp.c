@@ -29,5 +29,5 @@ int main()
     }
     
     printf("The dot product of A x B is %d\n", dotproduct);
-    return 0;
+    return 1;
 }
